@@ -29,6 +29,9 @@ public class Item {
 	@Column(name = "weight")
 	private double weight;
 
+	@Column(name = "category")
+	private String category;
+
 	@Column(name = "description")
 	private String description;
 
@@ -98,4 +101,21 @@ public class Item {
 		this.availableQuantity = availableQuantity;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public List<ItemURL> getItemUrlList() {
+		return itemUrlList;
+	}
+
+	public void setItemUrlList(List<ItemURL> itemUrlList) {
+		this.itemUrlList = itemUrlList;
+	}
+	
+	
 }

@@ -35,39 +35,37 @@
 
     /* Search and Category Bar */
     .search-container {
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    margin: 20px;
-	    gap: 20px;
-	    flex-wrap: wrap;
-	}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 
+    .input-container {
+        position: relative;
+        width: 300px;
+    }
 
-   .input-container {
-	    position: relative;
-	    width: 300px;
-	}
-	
-	.input-container input[type="text"] {
-	    width: 100%;
-	    padding: 10px 45px 10px 15px; /* Right padding increased */
-	    border-radius: 8px;
-	    border: 1px solid #ccc;
-	    font-size: 14px;
-	    box-sizing: border-box;
-	}
-	
-	.input-container img {
-	    position: absolute;
-	    right: 12px;
-	    top: 50%;
-	    transform: translateY(-50%); /* Vertically center the icon */
-	    width: 20px;
-	    height: 20px;
-	    pointer-events: none;
-	}
+    .input-container input[type="text"] {
+        width: 100%;
+        padding: 10px 45px 10px 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
 
+    .input-container img {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+    }
 
     select {
         padding: 10px;
@@ -79,37 +77,45 @@
     /* Items Grid */
     .items-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         gap: 20px;
         padding: 20px 40px;
     }
 
-    .items-container div {
+    .item-card {
         background-color: white;
-        padding: 20px;
+        padding: 15px;
         text-align: center;
         border-radius: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         transition: transform 0.2s;
     }
 
-    .items-container div:hover {
+    .item-card:hover {
         transform: scale(1.03);
+    }
+
+    .item-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+
+    .item-card p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+
+    .item-card p:first-of-type {
+        font-weight: bold;
+        font-size: 16px;
     }
 </style>
 </head>
 <body>
 
-    <!-- Header with links -->
-    <div class="header">
-        <div>
-            <a href="/previousOrders">Previous Orders</a>
-            <a href="/cart">Cart</a>
-        </div>
-        <div>
-            <a href="/profile">Profile Details</a>
-        </div>
-    </div>
+    <jsp:include page="Header.jsp" />
 
     <!-- Search and Category -->
     <div class="search-container">
@@ -134,12 +140,31 @@
 
     <!-- Items Grid -->
     <div class="items-container">
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div>
-        <div>Item 5</div>
-        <div>Item 6</div>
+        <div class="item-card">
+            <img src="/images/apple.jpg" alt="Apple image"/>
+            <p>Apple</p>
+            <p>Price: 250.00</p>
+        </div>
+        <div class="item-card">
+            <img src="/images/apple.jpg" alt="Banana image"/>
+            <p>Banana</p>
+            <p>Price: 100.00</p>
+        </div>
+        <div class="item-card">
+            <img src="/images/milk.jpeg" alt="Milk image"/>
+            <p>Milk</p>
+            <p>Price: 60.00</p>
+        </div>
+        <div class="item-card">
+            <img src="/images/apple.jpg" alt="Biscuits image"/>
+            <p>Biscuits</p>
+            <p>Price: 40.00</p>
+        </div>
+        <div class="item-card">
+            <img src="/images/apple.jpg" alt="Cleaner image"/>
+            <p>Floor Cleaner</p>
+            <p>Price: 150.00</p>
+        </div>
     </div>
 
 </body>
