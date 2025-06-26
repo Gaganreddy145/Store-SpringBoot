@@ -17,4 +17,9 @@ public class PageController {
 	public String getItemsPage() {
 		return "Items";
 	}
+	
+	@GetMapping("/cart")
+	public String getCartPage() {
+		return "Cart";
+	}
 }

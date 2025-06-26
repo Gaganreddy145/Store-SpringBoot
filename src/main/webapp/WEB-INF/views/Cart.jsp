@@ -1,0 +1,168 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Shopping Cart</title>
+<style>
+    body {
+        margin: 0;
+        /* padding: 20px; */
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .item-cart-container {
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .item-cart {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .item-details {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .item-cart img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .item-info p {
+        margin: 4px 0;
+    }
+
+    .item-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .item-actions button {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        border: none;
+        background-color: #00bcd4;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .item-actions button:hover {
+        background-color: #0097a7;
+    }
+
+    .item-actions span {
+        font-size: 16px;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    h4 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 20px;
+        color: #333;
+    }
+    
+    /* Header Bar */
+    .header {
+        background-color: #00bcd4;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+    }
+
+    .header a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 15px;
+    }
+
+    .header a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+    <jsp:include page="Header.jsp" />
+
+    <div class="item-cart-container">
+        <div class="item-cart">
+            <div class="item-details">
+                <img src="/images/apple.png" alt="Apple" />
+                <div class="item-info">
+                    <p><strong>Name:</strong> Apple</p>
+                    <p><strong>Price:</strong> 200.00</p>
+                </div>
+            </div>
+            <div class="item-actions">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+            </div>
+        </div>
+
+        <div class="item-cart">
+            <div class="item-details">
+                <img src="/images/banana.png" alt="Banana" />
+                <div class="item-info">
+                    <p><strong>Name:</strong> Banana</p>
+                    <p><strong>Price:</strong> 100.00</p>
+                </div>
+            </div>
+            <div class="item-actions">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+            </div>
+        </div>
+
+        <div class="item-cart">
+            <div class="item-details">
+                <img src="/images/biscuits.png" alt="Biscuits" />
+                <div class="item-info">
+                    <p><strong>Name:</strong> Biscuits</p>
+                    <p><strong>Price:</strong> 100.00</p>
+                </div>
+            </div>
+            <div class="item-actions">
+                <button>-</button>
+                <span>1</span>
+                <button>+</button>
+            </div>
+        </div>
+    </div>
+
+    <h4>Total Amount: 400.00</h4>
+
+</body>
+</html>
