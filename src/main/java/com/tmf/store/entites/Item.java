@@ -44,7 +44,7 @@ public class Item {
 	@OneToMany
 	@JoinColumn(name = "item_id")
 	private List<ItemURL> itemUrlList;
-
+	
 	public long getItemId() {
 		return itemId;
 	}
