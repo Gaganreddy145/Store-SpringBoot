@@ -16,11 +16,12 @@
     <!-- Search and Category -->
     <div class="search-container">
         <div class="input-container">
-            <input type="text" placeholder="Search products..." />
+            <input type="text" placeholder="Search products..." id="search"/>
             <img src="/images/search-logo.png" alt="Search logo" />
         </div>
         <div>
-            <select name="category">
+            <select name="category" id="category">
+            	<option value="all">All</option>
                 <option value="grocery">Grocery</option> 
                 <option value="beverages">Beverages</option>
                 <option value="diary">Dairy</option>  
@@ -33,7 +34,8 @@
             </select>
         </div>
         <div>
-        	<button onclick="sortByPrice()">Price - low to high</button>
+        	<button id="low-high" >Price - low to high</button>
+        	<button id="high-low" >Price - high to low</button>
         </div>
     </div>
     

@@ -2,16 +2,86 @@
  * 
  */
 
- const sortByPrice = () => {
-	 const data = window.itemsDataJson;
-	 const cardContainer = document.querySelector(".items-container");
-	 //const data = JSON.parse(cardContainer.dataset.category);
-	 const childrens = Array.from(cardContainer.children);
-	 data.sort((a,b) => a.price - b.price)
-	 childrens.map((card,index) => {
-		 card.children[1].innerHTML = data[index].itemName;
-		 let price = `${data[index].price}`
-		 if(!price.includes('.')) price = price + ".0";
-		 card.children[2].innerHTML = `Price: ${price}`; 
-	 })
- }
+const totalData = window.itemsDataJson;
+let manuplateData = [...totalData];
+const ascendingOrder = (a, b) => a.price - b.price;
+
+const descendingOrder = (a, b) => b.price - a.price;
+
+const lowToHighButton = document.getElementById("low-high");
+
+lowToHighButton.addEventListener("click", () => {
+	sortByPrice(ascendingOrder);
+})
+
+const highToLow = document.getElementById("high-low");
+
+highToLow.addEventListener("click", () => {
+	sortByPrice(descendingOrder);
+});
+
+const formatPrice = (p) => {
+	let price = `${p}`
+	if (!price.includes('.')) price = price + ".0";
+	return price;
+}
+
+const sortByPrice = (orderFn) => {
+	const data = manuplateData;
+	const cardContainer = document.querySelector(".items-container");
+	//const data = JSON.parse(cardContainer.dataset.category);
+	const childrens = Array.from(cardContainer.children);
+	data.sort(orderFn);
+	childrens.map((card, index) => {
+		card.children[1].innerHTML = data[index].itemName;
+		const price = formatPrice(data[index].price);
+		card.children[2].innerHTML = `Price: ${price}`;
+	})
+}
+
+const constructCard = (itemObj, cardContainer) => {
+	const div = document.createElement("div");
+	const img = document.createElement("img");
+	const p1 = document.createElement("p");
+	const p2 = document.createElement("p");
+	img.setAttribute("src", "/images/apple.jpg");
+	img.setAttribute("alt", "apple image");
+	div.setAttribute("class", "item-card");
+	p1.innerText = itemObj.itemName;
+	const price = formatPrice(itemObj.price);
+	p2.innerText = `Price: ${price}`;
+	div.append(img);
+	div.append(p1);
+	div.append(p2);
+	cardContainer.append(div);
+
+}
+
+const selectElement = document.getElementById("category");
+selectElement.addEventListener("change", (event) => {
+	const selectedCategory = event.target.value;
+	const data = [...totalData];
+	manuplateData = [];
+	const cardContainer = document.querySelector(".items-container");
+	cardContainer.innerHTML = "";
+	data.forEach((itemObj) => {
+		if (selectedCategory !== "all") {
+			if (itemObj.category === selectedCategory) {
+				constructCard(itemObj, cardContainer);
+				manuplateData.push(itemObj);
+			}
+		} else {
+			constructCard(itemObj, cardContainer);
+			manuplateData.push(itemObj);
+		}
+	})
+})
+
+const search = document.getElementById("search");
+search.addEventListener("input",(event) => {
+	const searchValue = event.target.value.trim().toLowerCase();
+	const searchData = manuplateData.filter((item) => item.itemName.toLowerCase().includes(searchValue));
+	const cardContainer = document.querySelector(".items-container");
+	cardContainer.innerHTML = "";
+	searchData.forEach((itemObj) => constructCard(itemObj,cardContainer));
+})
