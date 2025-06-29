@@ -59,6 +59,7 @@ const constructCard = (itemObj, cardContainer) => {
 
 const selectElement = document.getElementById("category");
 selectElement.addEventListener("change", (event) => {
+	document.getElementById("search").value = "";
 	const selectedCategory = event.target.value;
 	const data = [...totalData];
 	manuplateData = [];
@@ -77,11 +78,54 @@ selectElement.addEventListener("change", (event) => {
 	})
 })
 
+const categoryFilter = (data, manuplateData, selectedCategory) => {
+	data.forEach((itemObj) => {
+		if (selectedCategory !== "all") {
+			if (itemObj.category === selectedCategory) {
+				manuplateData.push(itemObj);
+			}
+		} else {
+			manuplateData.push(itemObj);
+		}
+	})
+}
+
 const search = document.getElementById("search");
-search.addEventListener("input",(event) => {
+search.addEventListener("input", (event) => {
 	const searchValue = event.target.value.trim().toLowerCase();
+	const selectedCategory = document.querySelector("select").value;
+	manuplateData = [];
+	const data = [...totalData];
+	categoryFilter(data, manuplateData, selectedCategory);
 	const searchData = manuplateData.filter((item) => item.itemName.toLowerCase().includes(searchValue));
+	manuplateData = [...searchData];
 	const cardContainer = document.querySelector(".items-container");
 	cardContainer.innerHTML = "";
-	searchData.forEach((itemObj) => constructCard(itemObj,cardContainer));
+	searchData.forEach((itemObj) => constructCard(itemObj, cardContainer));
 })
+
+const cartData = [];
+
+const addToCart = (id) => {
+	const cartAnchorElement = document.getElementById("cart");
+	const [item] = totalData.filter(item => item.itemId === id);
+	if(item.availableQuantity < 1){
+		alert("Less in quantity");
+		return;
+	}
+	const cartItem = cartData.filter(item => item.itemId === id);
+	if(cartItem.length > 0){
+		//console.log("avail: "  + item.availableQuantity + " Cart Item: " +cartItem.quantity);
+		if(item.availableQuantity > cartItem[0].quantity){
+			cartItem[0].quantity = cartItem[0].quantity + 1;
+		}else{
+			//console.log("CartItem: " + cartItem[0].quantity + "Item: " + item.availableQuantity);
+			alert("Unable to increase quantity");
+			return;
+		}
+	}else{
+		const updatedItem = {...item,quantity:1};
+		cartData.push(updatedItem);
+		cartAnchorElement.innerText = `Cart ${cartData.length}`
+	}
+}

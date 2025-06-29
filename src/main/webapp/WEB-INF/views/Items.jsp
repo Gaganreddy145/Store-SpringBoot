@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.Gson"%>
 <%@page import="java.util.List"%>
 <%@page import="com.tmf.store.entites.Item"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -76,6 +77,11 @@
 		            <img src="/images/apple.jpg" alt="Cleaner image"/>
 		            <p><%= item.getItemName() %></p>
 		            <p>Price: <%= item.getPrice() %></p>
+		            <%	long id = item.getItemId();
+		            	//Gson gson = new Gson();
+		            	//String jsonItem = gson.toJson(item);
+		            %>
+		            <button onclick="addToCart(<%= id%>)">Add to Cart</button>
 		        </div>
         	<% }
         %>
