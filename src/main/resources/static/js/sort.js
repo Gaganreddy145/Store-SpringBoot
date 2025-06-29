@@ -2,6 +2,11 @@
  * 
  */
 
+
+const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+const cartAnchorElement = document.getElementById("cart");
+if(cartData.length > 0) cartAnchorElement.innerText = `Cart ${cartData.length}`;
+
 const totalData = window.itemsDataJson;
 let manuplateData = [...totalData];
 const ascendingOrder = (a, b) => a.price - b.price;
@@ -104,9 +109,9 @@ search.addEventListener("input", (event) => {
 	searchData.forEach((itemObj) => constructCard(itemObj, cardContainer));
 })
 
-const cartData = [];
 
 const addToCart = (id) => {
+	const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
 	const cartAnchorElement = document.getElementById("cart");
 	const [item] = totalData.filter(item => item.itemId === id);
 	if(item.availableQuantity < 1){
@@ -118,6 +123,7 @@ const addToCart = (id) => {
 		//console.log("avail: "  + item.availableQuantity + " Cart Item: " +cartItem.quantity);
 		if(item.availableQuantity > cartItem[0].quantity){
 			cartItem[0].quantity = cartItem[0].quantity + 1;
+			localStorage.setItem("cartData",JSON.stringify(cartData));
 		}else{
 			//console.log("CartItem: " + cartItem[0].quantity + "Item: " + item.availableQuantity);
 			alert("Unable to increase quantity");
@@ -127,5 +133,6 @@ const addToCart = (id) => {
 		const updatedItem = {...item,quantity:1};
 		cartData.push(updatedItem);
 		cartAnchorElement.innerText = `Cart ${cartData.length}`
+		localStorage.setItem("cartData",JSON.stringify(cartData));
 	}
 }
