@@ -41,6 +41,7 @@ const sortByPrice = (orderFn) => {
 		card.children[1].innerHTML = data[index].itemName;
 		const price = formatPrice(data[index].price);
 		card.children[2].innerHTML = `Price: ${price}`;
+		card.children[3].setAttribute("onclick",`addToCart(${data[index].itemId})`);
 	})
 }
 
@@ -49,15 +50,21 @@ const constructCard = (itemObj, cardContainer) => {
 	const img = document.createElement("img");
 	const p1 = document.createElement("p");
 	const p2 = document.createElement("p");
+	const button = document.createElement("button");
+	
 	img.setAttribute("src", "/images/apple.jpg");
 	img.setAttribute("alt", "apple image");
 	div.setAttribute("class", "item-card");
+	button.setAttribute("onclick",`addToCart(${itemObj.itemId})`);
+	
 	p1.innerText = itemObj.itemName;
 	const price = formatPrice(itemObj.price);
 	p2.innerText = `Price: ${price}`;
+	button.innerText = "Add to Cart";
 	div.append(img);
 	div.append(p1);
 	div.append(p2);
+	div.append(button);
 	cardContainer.append(div);
 
 }

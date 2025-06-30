@@ -64,8 +64,9 @@
             </div>
         </div>  -->
     </div>
-
-    <h4>Total Amount: 400.00</h4>
+	
+	<div id="checkout"></div>
+    <h4 id="total-amount">Total Amount: 400.00</h4>
 
 	<script>
 		window.itemsDataJsonCart = <%= itemsJson%>

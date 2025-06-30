@@ -3,7 +3,10 @@
  */
 
 const totalData = window.itemsDataJsonCart;
-const cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
+
+const totalPriceH4 = document.getElementById("total-amount");
+let price = 0;
 
 const cartItemsContainer = document.querySelector(".item-cart-container");
 
@@ -38,6 +41,10 @@ const constructCartItem = (item) => {
 	divItemActions.setAttribute("class", "item-actions");
 	image.setAttribute("src", "/images/milk.jpeg");
 	image.setAttribute("alt", "Something");
+	buttonMinus.setAttribute("class", "decrement");
+	buttonMinus.setAttribute("onclick", `minus(${item.itemId})`);
+	buttonPlus.setAttribute("onclick", `plus(${item.itemId})`);
+	buttonPlus.setAttribute("class", "increment");
 
 	strongName.innerText = "Name:";
 	strongPrice.innerText = "Price:";
@@ -59,7 +66,77 @@ const constructCartItem = (item) => {
 	divItemActions.append(buttonPlus);
 	divItemCart.append(divItemActions);
 	cartItemsContainer.append(divItemCart);
+
+	price += (item.price * item.quantity);
 }
-cartData.forEach(item => {
-	constructCartItem(item);
-})
+
+const checkOutDiv = document.getElementById("checkout");
+const decideCheckOutButton = () => {
+	if (cartData.length > 0) {
+		const allChildrens = Array.from(checkOutDiv.children);
+		if(allChildrens.length === 1) return;
+		const checkOutButton = document.createElement("button");
+		checkOutButton.innerText = "Buy";
+		checkOutDiv.append(checkOutButton);
+	}else{
+		checkOutDiv.innerHTML = "";
+	}
+}
+decideCheckOutButton();
+
+const constructAllItems = () => {
+	cartData.forEach(item => {
+		constructCartItem(item);
+	});
+
+	totalPriceH4.innerText = `Total Amount: ${formatPrice(price)}`;
+	price = 0;
+}
+
+constructAllItems();
+
+const clearAndConstructAllItems = () => {
+	cartItemsContainer.innerHTML = "";
+	constructAllItems();
+}
+
+const minus = (id) => {
+	const decrementItemIndex = cartData.findIndex(item => item.itemId === id);
+	//decrementItem.quantity = decrementItem.quantity - 1;
+	if (decrementItemIndex < 0) return;
+
+	if (cartData[decrementItemIndex].quantity === 1) {
+		cartData.splice(decrementItemIndex, 1);
+	} else {
+		cartData[decrementItemIndex].quantity = cartData[decrementItemIndex].quantity - 1;
+	}
+	clearAndConstructAllItems();
+	decideCheckOutButton();
+	localStorage.setItem("cartData", JSON.stringify(cartData));
+}
+
+const plus = (id) => {
+	const incrementItemIndex = cartData.findIndex(item => item.itemId === id);
+	const totalDataItemIndex = totalData.findIndex(item => item.itemId === id);
+
+	if (incrementItemIndex < 0 || totalDataItemIndex < 0) return;
+
+	if (cartData[incrementItemIndex].quantity === totalData[totalDataItemIndex].availableQuantity) {
+		alert("Insufficient Quantity");
+		return;
+	} else {
+		cartData[incrementItemIndex].quantity = cartData[incrementItemIndex].quantity + 1;
+	}
+	clearAndConstructAllItems();
+	localStorage.setItem("cartData", JSON.stringify(cartData));
+}
+
+
+
+
+
+
+
+
+
+

@@ -103,3 +103,19 @@
     .header a:hover {
         text-decoration: underline;
     }
+    
+    #checkout{
+    	display:flex;
+    	justify-content: center;
+    	align-items: center;
+    }
+	
+	#checkout button{
+		margin-top:15px;
+        height: 32px;
+        font-size: 18px;
+        border: none;
+        background-color: #00bcd4;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;}
