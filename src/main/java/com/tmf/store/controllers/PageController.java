@@ -29,6 +29,11 @@ public class PageController {
 	public String getRegisterPage() {
 		return "Register";
 	}
+	
+	@GetMapping("/orders")
+	public String getAllOrders() {
+		return "Orders";
+	}
 
 	@GetMapping("/items")
 	public String getItemsPage(Model m) {
