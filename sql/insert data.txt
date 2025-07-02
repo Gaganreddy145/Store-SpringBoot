@@ -31,3 +31,16 @@ INSERT INTO user_details (email, first_name, last_name, password, phno, role) VA
 ('user7@example.com', 'Frank', 'Miller', 'password7', '9000000007', 'customer'),
 ('user8@example.com', 'Grace', 'Wilson', 'password8', '9000000008', 'customer'),
 ('user9@example.com', 'Harry', 'Moore', 'password9', '9000000009', 'customer');
+
+
+insert into order_details(ordered_on,user_id) values('2024-09-09 14:30:00',6);
+insert into ordered_items(quantity,item_id,order_id) values(2,5,2),(1,2,2),(3,10,2);
+select u.first_name,id.item_name,oi.quantity,od.ordered_on
+from order_details od
+join ordered_items oi
+on od.order_id = oi.order_id
+join item_details id
+on id.item_id = oi.item_id
+join user_details u
+on u.user_id = od.user_id
+where u.user_id = 5;
