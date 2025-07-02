@@ -16,6 +16,7 @@
 	<%
     	String jsonItems = (String) request.getAttribute("jsonItems");
     	User user = (User) session.getAttribute("user");
+    	//System.out.println(user.getAddressList());
     %>
     
     <% 

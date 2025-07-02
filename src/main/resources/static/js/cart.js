@@ -74,11 +74,13 @@ const checkOutDiv = document.getElementById("checkout");
 const decideCheckOutButton = () => {
 	if (cartData.length > 0) {
 		const allChildrens = Array.from(checkOutDiv.children);
-		if(allChildrens.length === 1) return;
+		if (allChildrens.length === 1) return;
 		const checkOutButton = document.createElement("button");
+		checkOutButton.setAttribute("onclick", "checkout()");
+		checkOutButton.setAttribute("id","checkout-button");
 		checkOutButton.innerText = "Buy";
 		checkOutDiv.append(checkOutButton);
-	}else{
+	} else {
 		checkOutDiv.innerHTML = "";
 	}
 }
@@ -130,6 +132,42 @@ const plus = (id) => {
 	clearAndConstructAllItems();
 	localStorage.setItem("cartData", JSON.stringify(cartData));
 }
+
+const checkout = async () => {
+
+	const button = document.getElementById("checkout-button");
+	try {
+		button.innerText = "Ordering...";
+		button.setAttribute("disabled","true");
+		const response = await fetch("http://localhost:8080/orders", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(cartData)
+		});
+
+		if(!response.ok){
+			throw new Error("an error");
+		}
+		
+		const result = await response.text();
+		if(result === "Order received successfully"){
+			cartData = [];
+			clearAndConstructAllItems();
+			button.remove();
+			localStorage.setItem("cartData", JSON.stringify(cartData));
+		}
+	} catch (error) {
+		button.innerText = "Buy";
+		button.setAttribute("disabled","false");
+		alert("An error occured");
+		console.log(error);
+	}
+
+}
+
+//console.log(cartData);
 
 
 

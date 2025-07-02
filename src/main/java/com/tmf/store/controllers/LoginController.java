@@ -58,7 +58,7 @@ public class LoginController {
 		return "redirect:/items";
 	}
 	
-	@GetMapping("/")
+	@GetMapping
 	public String getLoginPage() {
 		return "login";
 	}
