@@ -139,12 +139,18 @@ const checkout = async () => {
 	try {
 		button.innerText = "Ordering...";
 		button.setAttribute("disabled","true");
+		const updatedCartData = cartData.map((item) => {
+			return {
+				itemId:item.itemId,
+				quantity:item.quantity
+			}
+		});
 		const response = await fetch("http://localhost:8080/orders", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(cartData)
+			body: JSON.stringify(updatedCartData)
 		});
 
 		if(!response.ok){

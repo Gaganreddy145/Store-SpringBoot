@@ -59,7 +59,9 @@ public class LoginController {
 	}
 	
 	@GetMapping
-	public String getLoginPage() {
+	public String getLoginPage(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user != null) return "redirect:/items";
 		return "login";
 	}
 }

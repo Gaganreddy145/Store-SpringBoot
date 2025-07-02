@@ -5,12 +5,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>For More Store - Sign Up</title>
-<link rel="stylesheet" href="/css/register-style.css" >
+<link rel="stylesheet" href="/css/register-style.css">
 </head>
 <body>
     <div class="signup-container">
         <h1>Create Account</h1>
-        <form method="post">
+        <form method="post" action="register">
+            <!-- Personal Info -->
             <label for="firstname">Firstname:</label>
             <input type="text" id="firstname" name="firstname" required/>
 
@@ -26,7 +27,23 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required/>
 
-            <input type="submit" value="Sign up"/>
+            <!-- Address Info -->
+            <label for="doorNo">Door Number:</label>
+            <input type="text" id="doorNo" name="doorNo" required/>
+
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" required/>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required/>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required/>
+
+            <label for="pinCode">Pincode:</label>
+            <input type="number" id="pinCode" name="pinCode" required/>
+
+            <input type="submit" value="Sign Up"/>
         </form>
     </div>
 </body>

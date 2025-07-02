@@ -54,32 +54,9 @@
 	        </div>
 	    </div>
 	    
-	   
-		
-		
-	    <!-- Items Grid -->
-	    
+	    <!-- Items Grid -->   
 	    <div class="items-container">
-	       <!--  <div class="item-card">
-	            <img src="/images/apple.jpg" alt="Apple image"/>
-	            <p>Apple</p>
-	            <p>Price: 250.00</p>
-	        </div>
-	        <div class="item-card">
-	            <img src="/images/apple.jpg" alt="Banana image"/>
-	            <p>Banana</p>
-	            <p>Price: 100.00</p>
-	        </div>
-	        <div class="item-card">
-	            <img src="/images/milk.jpeg" alt="Milk image"/>
-	            <p>Milk</p>
-	            <p>Price: 60.00</p>
-	        </div>
-	        <div class="item-card">
-	            <img src="/images/apple.jpg" alt="Biscuits image"/>
-	            <p>Biscuits</p>
-	            <p>Price: 40.00</p>
-	        </div>
+	       <!--  
 	        <div class="item-card">
 	            <img src="/images/apple.jpg" alt="Cleaner image"/>
 	            <p>Floor Cleaner</p>

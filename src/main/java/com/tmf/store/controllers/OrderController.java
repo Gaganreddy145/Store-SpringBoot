@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmf.store.entites.User;
 import com.tmf.store.utils.CartItem;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/orders")
@@ -23,8 +26,13 @@ public class OrderController {
 	
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<String> createOrder(@RequestBody List<CartItem> cartItems) {
-		System.out.println(cartItems.size());
+	public ResponseEntity<String> createOrder(HttpSession session,@RequestBody List<CartItem> cartItems) {
+		for(CartItem item:cartItems) {
+			System.out.println(item.getItemId() + "-" + item.getQuantity());	
+		}
+		System.out.println("Size: " + cartItems.size());
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.getFirstName());
 		return ResponseEntity.ok("Order received successfully");
 	}
 }

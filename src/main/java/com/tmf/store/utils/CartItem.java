@@ -1,24 +1,24 @@
 package com.tmf.store.utils;
 
-import com.tmf.store.entites.Item;
-
 public class CartItem {
-	
-	private Item item;
+
+	private long itemId;
 	private int quantity;
-	
-	public Item getItem() {
-		return item;
+
+	public long getItemId() {
+		return itemId;
 	}
-	public void setItem(Item item) {
-		this.item = item;
+
+	public void setItemId(long itemId) {
+		this.itemId = itemId;
 	}
+
 	public int getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+
 }
