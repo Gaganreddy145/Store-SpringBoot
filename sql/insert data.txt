@@ -1,0 +1,33 @@
+INSERT INTO item_details (item_id, avail_quantity, description, is_avail, item_name, price, weight, category) VALUES
+(1, 40, 'Fortune Basmati Rice 5kg', true, 'Basmati Rice', 550.00, 5.0, 'grocery'),
+(2, 60, 'Aashirvaad Atta 10kg', true, 'Wheat Flour', 450.00, 10.0, 'grocery'),
+(3, 30, 'Tata Salt 1kg', true, 'Salt', 20.00, 1.0, 'grocery'),
+(4, 20, 'Amul Milk 1L', true, 'Milk', 60.00, 1.0, 'diary'),
+(5, 25, 'Amul Butter 500g', true, 'Butter', 275.00, 0.5, 'diary'),
+(6, 35, 'Coca Cola 2L Bottle', true, 'Coca Cola', 95.00, 2.0, 'beverages'),
+(7, 50, 'Tropicana Orange Juice 1L', true, 'Orange Juice', 110.00, 1.0, 'beverages'),
+(8, 45, 'Lay\'s Classic Salted 100g', true, 'Lay\'s Chips', 30.00, 0.1, 'snacks'),
+(9, 40, 'Kurkure Masala Munch 90g', true, 'Kurkure', 20.00, 0.09, 'snacks'),
+(10, 18, 'Frozen Green Peas 1kg', true, 'Frozen Peas', 120.00, 1.0, 'frozen'),
+(11, 12, 'Frozen French Fries 1kg', true, 'French Fries', 150.00, 1.0, 'frozen'),
+(12, 60, 'Fresh Red Apples 1kg', true, 'Apples', 160.00, 1.0, 'fruits'),
+(13, 75, 'Bananas (1 Dozen)', true, 'Bananas', 60.00, 1.2, 'fruits'),
+(14, 90, 'Tomatoes 1kg', true, 'Tomatoes', 30.00, 1.0, 'vegetables'),
+(15, 100, 'Onions 1kg', true, 'Onions', 25.00, 1.0, 'vegetables'),
+(16, 15, 'Lizol Floor Cleaner 1L', true, 'Floor Cleaner', 150.00, 1.0, 'household'),
+(17, 20, 'Surf Excel Detergent 1kg', true, 'Detergent', 180.00, 1.0, 'household'),
+(18, 10, 'Pedigree Adult Dog Food 3kg', true, 'Dog Food', 600.00, 3.0, 'pet'),
+(19, 8, 'Whiskas Cat Food 1.2kg', true, 'Cat Food', 350.00, 1.2, 'pet'),
+(20, 22, 'Britannia Good Day Biscuits 200g', true, 'Good Day Biscuits', 35.00, 0.2, 'snacks');
+
+INSERT INTO user_details (email, first_name, last_name, password, phno, role) VALUES
+('admin@example.com', 'Admin', 'User', 'admin123', '9000000000', 'admin'),
+('user1@example.com', 'John', 'Doe', 'password1', '9000000001', 'customer'),
+('user2@example.com', 'Jane', 'Smith', 'password2', '9000000002', 'customer'),
+('user3@example.com', 'Alice', 'Johnson', 'password3', '9000000003', 'customer'),
+('user4@example.com', 'Bob', 'Brown', 'password4', '9000000004', 'customer'),
+('user5@example.com', 'Charlie', 'Davis', 'password5', '9000000005', 'customer'),
+('user6@example.com', 'Emily', 'Clark', 'password6', '9000000006', 'customer'),
+('user7@example.com', 'Frank', 'Miller', 'password7', '9000000007', 'customer'),
+('user8@example.com', 'Grace', 'Wilson', 'password8', '9000000008', 'customer'),
+('user9@example.com', 'Harry', 'Moore', 'password9', '9000000009', 'customer');

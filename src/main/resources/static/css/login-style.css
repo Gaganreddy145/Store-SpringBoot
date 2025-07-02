@@ -78,3 +78,7 @@
     	margin-top:15px;
     	text-align: right;
     }
+    .error{
+    	color: red;
+    	font-weight: bold;
+    }

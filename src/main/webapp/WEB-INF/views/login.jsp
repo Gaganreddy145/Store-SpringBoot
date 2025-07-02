@@ -8,9 +8,15 @@
 <link href="/css/login-style.css" rel="stylesheet"> 
 </head>
 <body>
+	<%
+		String errorMessage = (String) request.getAttribute("error");
+	%>
     <div class="login-container">
         <h1>Login</h1>
-        <form method="post">
+        <% if(errorMessage != null){%>
+			<p class="error"><%= errorMessage%></p>
+		<%}%>
+        <form method="post" action="/login/auth">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required="required"/>
             
