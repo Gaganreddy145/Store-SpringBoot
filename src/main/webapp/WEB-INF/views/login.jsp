@@ -18,10 +18,10 @@
 		<%}%>
         <form method="post" action="/login/auth">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required="required"/>
+            <input type="email" id="email" name="email" required="required" value="user2@example.com" />
             
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required="required"/>
+            <input type="password" id="password" name="password" value="password2" required="required"/>
             
             <input type="submit" value="Login"/>
         </form>
