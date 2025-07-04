@@ -15,7 +15,7 @@ public interface OrderedItemRepository extends JpaRepository<OrderedItem, Long> 
 
 	@Query(value = "SELECT oi.ordered_item_id AS orderedItemId, od.order_id AS orderId, u.user_id AS userId, "
 			+ "CONCAT(u.first_name, ' ', u.last_name) AS fullName, id.item_name AS itemName, id.price, "
-			+ "oi.quantity, od.ordered_on AS orderedOn, od.status " + "FROM order_details od "
+			+ "oi.quantity, od.ordered_on AS orderedOn, oi.status " + "FROM order_details od "
 			+ "JOIN ordered_items oi ON od.order_id = oi.order_id " + "JOIN item_details id ON id.item_id = oi.item_id "
 			+ "JOIN user_details u ON u.user_id = od.user_id " + "WHERE u.user_id = :userId "
 			+ "ORDER BY od.ordered_on DESC", nativeQuery = true)

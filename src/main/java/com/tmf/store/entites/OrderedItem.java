@@ -1,5 +1,7 @@
 package com.tmf.store.entites;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,10 @@ public class OrderedItem {
 
 	@Column(name = "quantity")
 	private int quantity;
+
+	@Column(name = "status")
+	@ColumnDefault("'ordered'")
+	private String status;
 
 	@ManyToOne
 	@JoinColumn(name = "order_id", referencedColumnName = "order_id")
@@ -59,6 +65,14 @@ public class OrderedItem {
 
 	public void setItem(Item item) {
 		this.item = item;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

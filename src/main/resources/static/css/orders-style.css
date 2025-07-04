@@ -59,6 +59,17 @@
         border-radius: 20px;
         width: fit-content;
     }
+    
+    .order-status a{
+    	text-decoration: none;
+    	background-color: #00bcd4;
+        color: white;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        width: fit-content;
+        cursor: pointer;
+    }
 
     h2 {
         text-align: center;

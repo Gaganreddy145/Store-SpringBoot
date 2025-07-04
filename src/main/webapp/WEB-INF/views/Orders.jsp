@@ -62,13 +62,22 @@
 				                    	<p><strong>Quantity:</strong> <%= order.getQuantity() %></p>
 				                	</div>
 			            		</div>
-				            	<div class="order-status"><%= order.getStatus() %></div>
+			            		<%
+			            			if(order.getStatus().equals("ordered")){%>
+			            				<div class="order-status">			            					
+			            					<a onclick="cancelItem(<%= order.getOrderedItemId()%>)">Cancel</a>
+			            				</div>
+			            			<% }else{%>
+			            				<div class="order-status"><%= order.getStatus() %></div>
+			            			<%}
+			            		%>
+				            	
 				        	</div>
 				    	<%}
 				    %>
 				        
 				
-				   <!--       <div class="order-card">
+				   <!--  <div class="order-card">
 				            <p class="order-date">Ordered on: 20 June 2025</p>
 				            <div class="order-details">
 				                <img src="/images/apple.jpg" alt="Apple" />
@@ -84,5 +93,6 @@
 				<%}
 			%>	    
 	<%}%>
+	<script type="text/javascript" src="/js/order.js"></script>
 </body>
 </html>

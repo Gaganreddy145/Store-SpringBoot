@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -23,9 +24,13 @@ public class Order {
 	@Column(name = "order_id")
 	private long orderId;
 
-	@Column(name = "status")
-	@ColumnDefault("'ordered'")
-	private String status;
+//	@Column(name = "status")
+//	@ColumnDefault("'ordered'")
+//	private String status;
+	
+	@OneToOne
+	@JoinColumn(name="address_id", referencedColumnName = "address_id")
+	private Address address;
 
 	@Column(name = "ordered_on")
 	private LocalDateTime orderedOn;
@@ -48,13 +53,13 @@ public class Order {
 		this.orderId = orderId;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+//	public String getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(String status) {
+//		this.status = status;
+//	}
 
 	public LocalDateTime getOrderedOn() {
 		return orderedOn;
@@ -72,4 +77,13 @@ public class Order {
 		this.user = user;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	
 }
