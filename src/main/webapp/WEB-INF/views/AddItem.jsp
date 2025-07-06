@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/add-item-style.css" >
 </head>
 <body>
-	<jsp:include page="Header.jsp" />
+	<jsp:include page="AdminHeader.jsp" />
     <form method="post" action="/items/add">
     	<h2 style="text-align: center;">Add new item</h2>
         <label for="name">Name:</label>

@@ -17,4 +17,8 @@ public class ItemService {
 	public List<Item> getAllItems(){
 		return itemRepo.findAll();
 	}
+	
+	public int updateIsAvailable(long id) {
+		return itemRepo.updateIsAvailable(id);
+	}
 }

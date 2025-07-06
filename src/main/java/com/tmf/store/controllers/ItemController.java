@@ -8,12 +8,17 @@ import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.tmf.store.entites.Item;
@@ -61,6 +66,24 @@ public class ItemController {
 		m.addAttribute("jsonItems", listItemsJson);
 
 		return "Items";
+	}
+	
+	@GetMapping("/admin")
+	public String getAdminItems(Model m) {
+		List<Item> items = itemService.getAllItems();
+		m.addAttribute("items", items);
+		
+		return "AdminItems";
+	}
+	
+	@PutMapping("/{id}")
+	@ResponseBody
+	public ResponseEntity<String> updateIsAvailableItem(@PathVariable("id") long id){
+		int result = itemService.updateIsAvailable(id);
+		if(result == 1)
+			return ResponseEntity.ok("updated successfully");
+		else
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such item to be updated");
 	}
 
 	@GetMapping("/add")
