@@ -12,6 +12,8 @@ addButton.addEventListener("click",() => {
 	}
 	const input = document.createElement("input");
 	input.setAttribute("required",true);
+	input.setAttribute("type","text");
+	input .setAttribute("name","imageUrls");
 	itemURLDiv.append(input);
 	if(itemURLDiv.children.length >= 2){
 		removeButton.hidden = false;		
