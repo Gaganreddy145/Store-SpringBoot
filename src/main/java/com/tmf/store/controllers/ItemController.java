@@ -54,4 +54,9 @@ public class ItemController {
 		
 		return "Items";
 	}
+	
+	@GetMapping("/add")
+	public String addItem() {
+		return "AddItem";
+	}
 }
