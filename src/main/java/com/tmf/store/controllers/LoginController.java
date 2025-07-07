@@ -28,8 +28,9 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+
 	@PostMapping("/auth")
-	public String authenticateUser(Model m,HttpServletRequest request,@RequestParam("email") String email, @RequestParam("password") String password) {
+	public String authenticateUser(Model m,HttpSession session,@RequestParam("email") String email, @RequestParam("password") String password) {
 //		try {
 //			Connection conn = DbConnection.getConnection();
 //			String selectQuery = "select * from user_details";
@@ -53,7 +54,6 @@ public class LoginController {
 			return "login";
 		}
 		
-		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		return "redirect:/items";
 	}
