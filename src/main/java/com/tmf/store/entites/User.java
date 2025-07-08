@@ -43,6 +43,10 @@ public class User {
 	@OneToMany
 	@JoinColumn(name = "user_id")
 	private List<Address> addressList;
+	
+	public User() {
+		super();
+	}
 
 	public long getId() {
 		return id;

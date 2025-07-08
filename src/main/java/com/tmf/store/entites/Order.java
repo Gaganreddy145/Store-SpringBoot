@@ -44,6 +44,12 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
+	
+	
+
+	public Order() {
+		super();
+	}
 
 	public long getOrderId() {
 		return orderId;

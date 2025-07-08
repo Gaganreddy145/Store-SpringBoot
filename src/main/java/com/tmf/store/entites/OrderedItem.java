@@ -34,6 +34,10 @@ public class OrderedItem {
 	@ManyToOne
 	@JoinColumn(name = "item_id", referencedColumnName = "item_id")
 	private Item item;
+	
+	public OrderedItem() {
+		super();
+	}
 
 	public long getOrderedItemId() {
 		return orderedItemId;

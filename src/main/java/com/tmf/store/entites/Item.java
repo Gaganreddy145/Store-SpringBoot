@@ -45,6 +45,10 @@ public class Item {
 	@JoinColumn(name = "item_id")
 	private List<ItemURL> itemUrlList;
 	
+	public Item() {
+		super();
+	}
+
 	public long getItemId() {
 		return itemId;
 	}

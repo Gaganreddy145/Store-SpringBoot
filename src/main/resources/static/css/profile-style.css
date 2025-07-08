@@ -4,7 +4,7 @@ body {
 	font-family: 'Segoe UI', sans-serif;
 	background-color: #f4f4f4;
 	margin: 0;
-	padding: 30px;
+	/*padding: 30px;*/
 }
 
 .profile-container {
@@ -61,6 +61,10 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
 	border-radius: 6px;
 	border: 1px solid #ccc;
 	box-sizing: border-box;
+}
+
+#input-show{
+	display:block;
 }
 
 .editing input[type="text"], .editing input[type="email"], .editing input[type="tel"],

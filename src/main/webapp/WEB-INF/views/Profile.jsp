@@ -19,7 +19,7 @@
 %>
 
 <div class="profile-container" id="profile">
-    <form method="post">
+    <form method="post" action="/profile">
         <!-- User Details -->
         <section class="section">
             <h2>User Details</h2>
@@ -48,7 +48,7 @@
         </section>
 
         <!-- Address Details -->
-        <section class="section">
+        <section class="section" id="address-section">
             <h2>Address Details</h2>
             <% for (Address address : addressList) { %>
             <div class="field-group address-field">
@@ -78,12 +78,14 @@
                     <input type="text" name="state" value="<%= address.getState() %>" required />
                 </div>
             </div>
+            <input type="hidden" name="addressId" value="<%= address.getAddressId()%>">
             <% } %>
         </section>
 
         <!-- Buttons -->
         <div class="actions">
-        	<!-- <button>New address</button>  -->
+        	<button id="new-address" type="button">New address</button> 
+        	<!--  <button id="new-address-submit" hidden type="button">Submit.</button>  -->
             <button type="button" id="edit" >Edit</button>
             <button type="submit" hidden>Submit</button>
         </div>

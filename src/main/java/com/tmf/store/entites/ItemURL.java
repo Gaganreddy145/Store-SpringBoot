@@ -18,6 +18,10 @@ public class ItemURL {
 	
 	@Column(name = "url")
 	private String url;
+	
+	public ItemURL() {
+		super();
+	}
 
 	public long getItemUrlId() {
 		return itemUrlId;
