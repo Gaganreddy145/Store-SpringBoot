@@ -47,6 +47,16 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(String firstName, String lastName, String phno, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phno = phno;
+		this.email = email;
+		this.password = password;
+	}
+
 
 	public long getId() {
 		return id;

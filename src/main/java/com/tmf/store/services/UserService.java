@@ -1,6 +1,7 @@
 package com.tmf.store.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -54,5 +55,13 @@ public class UserService {
 		user.setEmail(email);
 		user.setPhno(phno);
 		userRepo.save(user);
+	}
+	
+	public void addUser(String firstName,String lastName,String email,String phno,String password,String doorNo,String area,String city,String state,Long pinCode) {
+		User newUser = new User(firstName, lastName, phno, email, password);
+		Address newAddress = new Address(doorNo, area, city, state, pinCode, newUser);
+		List<Address> addressList = Arrays.asList(newAddress);
+		newUser.setAddressList(addressList);
+		userRepo.save(newUser);
 	}
 }
