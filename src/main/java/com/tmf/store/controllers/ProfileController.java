@@ -51,9 +51,12 @@ public class ProfileController {
 										,@RequestParam("addressId") List<Long> addressId
 										,HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		addressService.updateAddresses(doorNo, states, pinCode, city, area, addressId, user);
+		//addressService.updateAddresses(doorNo, states, pinCode, city, area, addressId, user);
+		if(user == null) return "redirect:/login";
+		userService.updateUserAndAddress(doorNo, states, pinCode, city, area, addressId, user, firstName, lastName, email, phno);
 		return "redirect:/profile";
 	}
+	
 	@PostMapping("/address")
 	public String addAddress(HttpSession session,@RequestParam("state") String state, @RequestParam("pincode") long pinCode,
 			@RequestParam("city") String city, @RequestParam("area") String area, @RequestParam("doorno") String door) {

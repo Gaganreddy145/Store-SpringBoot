@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,8 +41,7 @@ public class User {
 	@ColumnDefault("'customer'")
 	private String role;
 
-	@OneToMany
-	@JoinColumn(name = "user_id")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Address> addressList;
 	
 	public User() {
