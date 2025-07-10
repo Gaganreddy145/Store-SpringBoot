@@ -16,7 +16,7 @@ public class ItemURL {
 	@Column(name = "item_url_id")
 	private long itemUrlId;
 	
-	@Column(name = "url")
+	@Column(name = "url",columnDefinition = "TEXT")
 	private String url;
 	
 	public ItemURL() {

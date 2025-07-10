@@ -38,6 +38,9 @@ const sortByPrice = (orderFn) => {
 	const childrens = Array.from(cardContainer.children);
 	data.sort(orderFn);
 	childrens.map((card, index) => {
+		const srcUrl = data[index].itemUrlList.length == 0 ? "/images/apple.jpg": data[index].itemUrlList[0].url;
+		card.children[0].src = srcUrl;
+		card.children[0].alt = `${data[index].itemName} image`;
 		card.children[1].innerHTML = data[index].itemName;
 		const price = formatPrice(data[index].price);
 		card.children[2].innerHTML = `Price: ${price}`;
@@ -52,7 +55,8 @@ const constructCard = (itemObj, cardContainer) => {
 	const p2 = document.createElement("p");
 	const button = document.createElement("button");
 	
-	img.setAttribute("src", "/images/apple.jpg");
+	const imageUrl = itemObj.itemUrlList.length == 0 ? "/images/apple.jpg": itemObj.itemUrlList[0].url;
+	img.setAttribute("src", imageUrl);
 	img.setAttribute("alt", "apple image");
 	div.setAttribute("class", "item-card");
 	button.setAttribute("onclick",`addToCart(${itemObj.itemId})`);

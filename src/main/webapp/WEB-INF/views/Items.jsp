@@ -67,7 +67,10 @@
 	        	
 	        	for(Item item:items){%>
 	        		 <div class="item-card">
-			            <img src="/images/apple.jpg" alt="Cleaner image"/>
+	        		 <%
+	        		 	String imageUrl = item.getItemUrlList().size() == 0 ? "/images/apple.jpg" : item.getItemUrlList().get(0).getUrl();
+	        		 %>
+			            <img src="<%= imageUrl %>" alt="<%= item.getItemName() %> image"/>
 			            <p><%= item.getItemName() %></p>
 			            <p>Price: <%= item.getPrice() %></p>
 			            <%	long id = item.getItemId();

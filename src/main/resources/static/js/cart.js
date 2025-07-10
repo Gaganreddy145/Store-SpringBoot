@@ -39,8 +39,11 @@ const constructCartItem = (item) => {
 	divItemDetails.setAttribute("class", "item-details");
 	divItemInfo.setAttribute("class", "item-info");
 	divItemActions.setAttribute("class", "item-actions");
-	image.setAttribute("src", "/images/milk.jpeg");
-	image.setAttribute("alt", "Something");
+	
+	const imageUrl = item.itemUrlList.length == 0 ? "/images/milk.jpeg": item.itemUrlList[0].url;
+	
+	image.setAttribute("src", imageUrl);
+	image.setAttribute("alt", `${item.itemName} image`);
 	buttonMinus.setAttribute("class", "decrement");
 	buttonMinus.setAttribute("onclick", `minus(${item.itemId})`);
 	buttonPlus.setAttribute("onclick", `plus(${item.itemId})`);
