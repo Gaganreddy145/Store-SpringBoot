@@ -86,12 +86,12 @@ public class ItemController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such item to be updated");
 	}
 
-	@GetMapping("/add")
+	@GetMapping("/admin/add")
 	public String addItem() {
 		return "AddItem";
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/admin/add")
 	public String postItem(@RequestParam("name") String name,
 	                       @RequestParam("price") double price,
 	                       @RequestParam("weight") double weight,

@@ -68,7 +68,7 @@
 			            					<a onclick="cancelItem(<%= order.getOrderedItemId()%>)">Cancel</a>
 			            				</div>
 			            			<% }else{%>
-			            				<div class="order-status"><%= order.getStatus() %></div>
+			            				<div class="order-status"><%= order.getStatus().equals("ofd") ? "Out for Delivery" : order.getStatus() %></div>
 			            			<%}
 			            		%>
 				            	

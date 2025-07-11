@@ -19,12 +19,28 @@ public class OrderService {
 		return orderItemRepo.getOrders(userId);
 	}
 	
+	public List<UserOrderItem> getAllOrders(){
+		return orderItemRepo.getAllOrders();
+	}
+	
 	public String cancelItem(Long orderItemId) {
 		OrderedItem orderItem = orderItemRepo.findById(orderItemId).orElse(null);
 		if(orderItem == null) return "fail";
 		
 		if(orderItem.getStatus().equals("ordered")) {
 			orderItem.setStatus("cancelled");
+			orderItemRepo.save(orderItem);
+			return "success";
+		}
+		return "fail";
+	}
+	
+	public String updateItemStatus(Long id,String status) {
+		OrderedItem orderItem = orderItemRepo.findById(id).orElse(null);
+		if(orderItem == null) return "fail";
+		
+		if(orderItem.getStatus().equals("ordered")) {
+			orderItem.setStatus(status);
 			orderItemRepo.save(orderItem);
 			return "success";
 		}

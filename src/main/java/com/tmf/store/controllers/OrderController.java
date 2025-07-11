@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tmf.store.entites.User;
@@ -40,12 +42,29 @@ public class OrderController {
 		return "Orders";
 	}
 	
+	@GetMapping("/admin")
+	public String getOrdersAdmin(HttpSession session,Model m) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
+		List<UserOrderItem> orders = orderService.getAllOrders();
+		m.addAttribute("orders",orders);
+		return "AdminOrders";
+	}
+	
 	@PutMapping("/{id}")
 	@ResponseBody
-	public ResponseEntity<String> deleteOrder(@PathVariable("id") Long id) {
+	public ResponseEntity<String> updateOrder(@PathVariable("id") Long id) {
 		String status = orderService.cancelItem(id);
 		if(status.equals("success")) return ResponseEntity.ok("Item Cancelled");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(status);
+	}
+	
+	@PutMapping("/admin")
+	@ResponseBody
+	public ResponseEntity<String> updateOrderStatusAdmin(@RequestParam("id") Long id,@RequestParam("status") String status){
+		String statusResponse = orderService.updateItemStatus(id, status);
+		if(statusResponse.equals("success")) return ResponseEntity.ok("Item Status Updated");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(statusResponse);
 	}
 	
 	@PostMapping

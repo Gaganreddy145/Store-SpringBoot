@@ -58,6 +58,17 @@ public class LoginController {
 		return "redirect:/items";
 	}
 	
+	@PostMapping("/auth/admin")
+	public String authenticateAdmin(Model m,HttpSession session,@RequestParam("email") String email,@RequestParam("password") String password) {
+		User user = userService.authUser(email, password);
+		if(user == null || user.getRole().equals("customer")) {
+			m.addAttribute("error","Incorrect email or password");
+			return "login";
+		}
+		
+		return "redirect:/items/admin";
+	}
+	
 	@GetMapping
 	public String getLoginPage(HttpSession session) {
 		User user = (User) session.getAttribute("user");

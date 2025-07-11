@@ -16,7 +16,7 @@
         <% if(errorMessage != null){%>
 			<p class="error"><%= errorMessage%></p>
 		<%}%>
-        <form method="post" action="/login/auth">
+        <form method="post" id="form" action="/login/auth">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required="required" value="user2@example.com" />
             
@@ -26,8 +26,11 @@
             <input type="submit" value="Login"/>
         </form>
         <div class="anchor-container">
+        	<button id="admin" onclick="adminLogin()">Admin Login</button>
+        	<button id="user" onclick="userLogin()" hidden>User Login</button>
         	<a href="/register">Sign up?</a>
         </div>
     </div>
+    <script type="text/javascript" src="/js/login.js"></script>
 </body>
 </html>

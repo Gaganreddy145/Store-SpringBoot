@@ -9,7 +9,7 @@
 </head>
 <body>
 	<jsp:include page="AdminHeader.jsp" />
-    <form method="post" action="/items/add">
+    <form method="post" action="/items/admin/add">
     	<h2 style="text-align: center;">Add new item</h2>
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required/>

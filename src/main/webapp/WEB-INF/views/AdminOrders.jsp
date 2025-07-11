@@ -29,7 +29,7 @@
 	<% 	
 			List<UserOrderItem> orders = (List<UserOrderItem>) request.getAttribute("orders");
 	%>
-		    <jsp:include page="Header.jsp" />
+		    <jsp:include page="AdminHeader.jsp" />
 			<%
 				if(orders.size() == 0){%>
 					<h2>No Orders</h2>
@@ -55,14 +55,14 @@
 			            		<%
 			            			if(order.getStatus().equals("ordered")){%>
 			            				<div class="order-status">			            					
-			            					<select name="status" required>
+			            					<select name="status" onchange="updateStatus(event,<%= order.getOrderedItemId()%>)" required>
 			            						<option value="" disabled selected>Update status</option>
 			            						<option value="cancelled">Cancel</option>
 			            						<option value="ofd">Out for Delivery</option>
 			            					</select>
 			            				</div>
 			            			<% }else{%>
-			            				<div class="order-status"><%= order.getStatus() %></div>
+			            				<div class="order-status"><%= order.getStatus().equals("ofd") ? "Out for Delivery" : order.getStatus() %></div>
 			            			<%}
 			            		%>
 				            	
@@ -85,6 +85,7 @@
 				        </div>  -->
 				    </div>
 				<%}
-			%>	   
+			%>	
+	<script type="text/javascript" src="/js/adminOrders.js"></script>   
 </body>
 </html>
