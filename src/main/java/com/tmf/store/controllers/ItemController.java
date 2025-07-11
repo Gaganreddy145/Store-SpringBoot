@@ -70,7 +70,7 @@ public class ItemController {
 	
 	@GetMapping("/admin")
 	public String getAdminItems(Model m) {
-		List<Item> items = itemService.getAllItems();
+		List<Item> items = itemService.getAllItemsAdmin();
 		m.addAttribute("items", items);
 		
 		return "AdminItems";

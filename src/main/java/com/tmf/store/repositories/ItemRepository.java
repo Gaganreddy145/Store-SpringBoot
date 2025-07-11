@@ -1,5 +1,7 @@
 package com.tmf.store.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +18,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
 	@Transactional
 	@Query(value = "update item_details set is_avail = NOT is_avail where item_id = :id",nativeQuery = true)
 	int updateIsAvailable(@Param("id") long id);
+	
+	List<Item> findByIsAvailable(Boolean isAvail);
 }

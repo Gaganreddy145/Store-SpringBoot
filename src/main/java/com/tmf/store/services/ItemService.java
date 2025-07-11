@@ -15,6 +15,10 @@ public class ItemService {
 	private ItemRepository itemRepo;
 	
 	public List<Item> getAllItems(){
+		return itemRepo.findByIsAvailable(true);
+	}
+	
+	public List<Item> getAllItemsAdmin(){
 		return itemRepo.findAll();
 	}
 	

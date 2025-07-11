@@ -5,7 +5,7 @@
 const cancelItem = async (id) => {
 	try {
 		const response = await fetch("/orders/" + id, {
-			method: "DELETE"
+			method: "PUT"
 		});
 		
 		if(!response.ok) throw new Error("Error");
