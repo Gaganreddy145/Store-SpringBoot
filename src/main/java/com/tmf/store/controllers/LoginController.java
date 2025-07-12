@@ -66,6 +66,7 @@ public class LoginController {
 			return "login";
 		}
 		
+		session.setAttribute("user", user);
 		return "redirect:/items/admin";
 	}
 	
@@ -73,6 +74,12 @@ public class LoginController {
 	public String getLoginPage(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user != null) return "redirect:/items";
+		return "login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "login";
 	}
 }

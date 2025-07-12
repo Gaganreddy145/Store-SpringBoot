@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.tmf.store.entites.Item;
+import com.tmf.store.entites.User;
 import com.tmf.store.services.ItemService;
 import com.tmf.store.utils.DbConnection;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/items")
@@ -69,7 +72,10 @@ public class ItemController {
 	}
 	
 	@GetMapping("/admin")
-	public String getAdminItems(Model m) {
+	public String getAdminItems(Model m,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
+		
 		List<Item> items = itemService.getAllItemsAdmin();
 		m.addAttribute("items", items);
 		
@@ -87,7 +93,9 @@ public class ItemController {
 	}
 
 	@GetMapping("/admin/add")
-	public String addItem() {
+	public String addItem(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
 		return "AddItem";
 	}
 
@@ -98,8 +106,10 @@ public class ItemController {
 	                       @RequestParam("category") String category,
 	                       @RequestParam("description") String description,
 	                       @RequestParam("quantity") int quantity,
-	                       @RequestParam("imageUrls") List<String> imageURLs) {
-
+	                       @RequestParam("imageUrls") List<String> imageURLs
+	                       ,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
 	    Connection conn = null;
 	    try {
 	        conn = DbConnection.getConnection();
