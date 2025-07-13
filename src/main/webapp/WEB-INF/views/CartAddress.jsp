@@ -12,5 +12,38 @@
 	<%
 		List<Address> addressList = (List<Address>) request.getAttribute("addresses");
 	%>
+	<div>
+	<section class="section" id="address-section">
+	<% for(Address address : addressList){ %>
+		<label>
+		<input type="radio" name="addressId" value="<%= address.getAddressId()%>">
+ 		<div class="field-group" >
+ 			<div class="field">
+               <label>Door No:</label>
+               <div class="readonly-value"><%= address.getDoorNo() %></div>
+           </div>
+           <div class="field">
+               <label>Area:</label>
+               <div class="readonly-value"><%= address.getArea() %></div>
+           </div>
+           <div class="field">
+               <label>City:</label>
+               <div class="readonly-value"><%= address.getCity() %></div>           
+           </div>
+           <div class="field">
+               <label>Pincode:</label>
+               <div class="readonly-value"><%= address.getPinCode() %></div>        
+           </div>
+           <div class="field">
+               <label>State:</label>
+               <div class="readonly-value"><%= address.getState() %></div>
+           </div>
+ 		</div>
+ 		</label>
+	<% }%>
+		<button onclick="selectAddress()" id="buy">Buy</button>
+	</section>
+	</div>
+	<script type="text/javascript" src="/js/cartAddress.js"></script>
 </body>
 </html>

@@ -8,5 +8,6 @@
       </div>
       <div>
           <a href="/profile/admin">Profile Details</a>
+          <a href="/login/logout">Logout</a>
       </div>
   </div>

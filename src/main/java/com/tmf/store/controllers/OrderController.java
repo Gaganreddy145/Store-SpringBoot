@@ -22,6 +22,7 @@ import com.tmf.store.entites.Address;
 import com.tmf.store.entites.User;
 import com.tmf.store.services.OrderService;
 import com.tmf.store.services.UserService;
+import com.tmf.store.utils.CartDetails;
 import com.tmf.store.utils.CartItem;
 import com.tmf.store.utils.UserOrderItem;
 
@@ -86,13 +87,18 @@ public class OrderController {
 	
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<String> createOrder(HttpSession session,@RequestBody List<CartItem> cartItems) {
+	public ResponseEntity<String> createOrder(HttpSession session,@RequestBody CartDetails cart) {
+		List<CartItem> cartItems = cart.getItems();
 		for(CartItem item:cartItems) {
 			System.out.println(item.getItemId() + "-" + item.getQuantity());	
 		}
 		System.out.println("Size: " + cartItems.size());
 		User user = (User) session.getAttribute("user");
 		System.out.println(user.getFirstName());
+		System.out.println("Address Id: " + cart.getAddressId());
+		
+		orderService.createOrder(user, cart);
+	
 		return ResponseEntity.ok("Order received successfully");
 	}
 }

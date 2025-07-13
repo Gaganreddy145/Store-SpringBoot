@@ -117,6 +117,26 @@
         font-weight: bold;
         margin-top: 12px;
     }
+    .header {
+        background-color: #00bcd4;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+    }
+
+    .header a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 15px;
+    }
+
+    .header a:hover {
+        text-decoration: underline;
+    }
+    
 </style>
 </head>
 <body>
@@ -133,7 +153,7 @@
         return temp;
     }
 %>
-
+<jsp:include page="Header.jsp" />
 <div class="product-container">
     <!-- Carousel -->
     <div class="carousel" id="carousel">

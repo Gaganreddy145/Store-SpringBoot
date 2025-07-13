@@ -50,6 +50,16 @@ public class Order {
 	public Order() {
 		super();
 	}
+	
+	
+
+	public Order(Address address,User user) {
+		super();
+		this.address = address;
+		this.user = user;
+	}
+
+
 
 	public long getOrderId() {
 		return orderId;

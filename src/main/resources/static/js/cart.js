@@ -78,10 +78,10 @@ const decideCheckOutButton = () => {
 	if (cartData.length > 0) {
 		const allChildrens = Array.from(checkOutDiv.children);
 		if (allChildrens.length === 1) return;
-		const checkOutButton = document.createElement("button");
-		checkOutButton.setAttribute("onclick", "checkout()");
-		checkOutButton.setAttribute("id","checkout-button");
-		checkOutButton.innerText = "Buy";
+		const checkOutButton = document.createElement("a");
+		checkOutButton.setAttribute("href", "/orders/address");
+		//checkOutButton.setAttribute("id","checkout-button");
+		checkOutButton.innerText = "Checkout";
 		checkOutDiv.append(checkOutButton);
 	} else {
 		checkOutDiv.innerHTML = "";
@@ -136,7 +136,7 @@ const plus = (id) => {
 	localStorage.setItem("cartData", JSON.stringify(cartData));
 }
 
-const checkout = async () => {
+/*const checkout = async () => {
 
 	const button = document.getElementById("checkout-button");
 	try {
@@ -174,7 +174,7 @@ const checkout = async () => {
 		console.log(error);
 	}
 
-}
+}*/
 
 //console.log(cartData);
 

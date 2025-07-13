@@ -38,6 +38,18 @@ public class OrderedItem {
 	public OrderedItem() {
 		super();
 	}
+	
+	
+
+	public OrderedItem(int quantity, Order order, Item item) {
+		super();
+		this.quantity = quantity;
+		this.order = order;
+		this.item = item;
+		this.status = "ordered";
+	}
+
+
 
 	public long getOrderedItemId() {
 		return orderedItemId;
