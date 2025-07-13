@@ -66,6 +66,7 @@
 	        	List<Item> items = (List<Item>) request.getAttribute("items");
 	        	
 	        	for(Item item:items){%>
+	        		<a href="/items/<%= item.getItemId()%>" class="link-card">
 	        		 <div class="item-card">
 	        		 <%
 	        		 	String imageUrl = item.getItemUrlList().size() == 0 ? "/images/apple.jpg" : item.getItemUrlList().get(0).getUrl();
@@ -79,6 +80,7 @@
 			            %>
 			            <button onclick="addToCart(<%= id%>)">Add to Cart</button>
 			        </div>
+			        </a>
 	        	<% }
 	        %>
 	    </div>

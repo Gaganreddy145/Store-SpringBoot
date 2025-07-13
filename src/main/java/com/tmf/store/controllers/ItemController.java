@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,6 +91,18 @@ public class ItemController {
 			return ResponseEntity.ok("updated successfully");
 		else
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No such item to be updated");
+	}
+	
+	@GetMapping("/{id}")
+	public String getItemById(@PathVariable("id") Long id,HttpSession session,Model m) {
+		User user = (User) session.getAttribute("user");
+		Optional<User> checkUser = Optional.ofNullable(user);
+		if(checkUser.isEmpty()) return "redirect:/login";
+		Item item = itemService.getItemById(id);
+		if(item == null) return ""; // To complete
+		
+		m.addAttribute("item",item);
+		return "Item";
 	}
 
 	@GetMapping("/admin/add")

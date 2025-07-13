@@ -7,6 +7,7 @@ import com.tmf.store.entites.Item;
 import com.tmf.store.repositories.ItemRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -24,5 +25,9 @@ public class ItemService {
 	
 	public int updateIsAvailable(long id) {
 		return itemRepo.updateIsAvailable(id);
+	}
+	
+	public Item getItemById(Long id){
+		return itemRepo.findById(id).orElse(null);
 	}
 }
