@@ -44,3 +44,35 @@ on id.item_id = oi.item_id
 join user_details u
 on u.user_id = od.user_id
 where u.user_id = 5;
+
+
+INSERT INTO address_details(area, city, door_no, pincode, state, user_id) VALUES
+
+('Asilmetta', 'Vizag', '9-1-4', 530003, 'Andhra Pradesh', 3),
+
+('MVP Colony', 'Vizag', '8-8-21', 530017, 'Andhra Pradesh', 4),
+('HB Colony', 'Vizag', '11-6-7', 530022, 'Andhra Pradesh', 4),
+
+('Arilova', 'Vizag', '12-2-5', 530040, 'Andhra Pradesh', 5),
+('NAD Junction', 'Vizag', '13-9-11', 530009, 'Andhra Pradesh', 5),
+
+('Gopalapatnam', 'Vizag', '15-4-8', 530027, 'Andhra Pradesh', 6),
+('Maddilapalem', 'Vizag', '16-7-5', 530012, 'Andhra Pradesh', 6),
+
+('Kancharapalem', 'Vizag', '17-8-6', 530008, 'Andhra Pradesh', 7),
+('Kurmannapalem', 'Vizag', '18-3-9', 530046, 'Andhra Pradesh', 7),
+
+('Pedawaltair', 'Vizag', '19-5-2', 530017, 'Andhra Pradesh', 8),
+('Chinnawaltair', 'Vizag', '20-2-6', 530017, 'Andhra Pradesh', 8),
+
+('Kailasapuram', 'Vizag', '21-1-7', 530044, 'Andhra Pradesh', 9),
+('Town Kotha Road', 'Vizag', '22-6-10', 530001, 'Andhra Pradesh', 9),
+
+('Venkojipalem', 'Vizag', '23-4-12', 530022, 'Andhra Pradesh', 10),
+('Lawsons Bay', 'Vizag', '24-5-3', 530017, 'Andhra Pradesh', 10),
+
+('Seethampeta', 'Vizag', '25-7-11', 530016, 'Andhra Pradesh', 11),
+('Resapuvanipalem', 'Vizag', '26-9-8', 530013, 'Andhra Pradesh', 11),
+
+('Sagar Nagar', 'Vizag', '27-2-10', 530045, 'Andhra Pradesh', 12),
+('Yendada', 'Vizag', '28-3-4', 530045, 'Andhra Pradesh', 12);
