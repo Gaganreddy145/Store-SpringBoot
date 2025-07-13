@@ -11,28 +11,28 @@
 <style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background-color: #f4f4f4;
+        background-color: #f0f2f5;
         margin: 0;
-        padding: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        padding: 20px;
     }
 
     .product-container {
-        background: #fff;
-        width: 600px;
+        max-width: 700px;
+        margin: 0 auto;
+        background: #ffffff;
         border-radius: 12px;
         padding: 25px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     .carousel {
         position: relative;
         width: 100%;
-        height: 300px;
+        height: 350px;
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background-color: #fff;
     }
 
     .carousel img {
@@ -41,7 +41,7 @@
         object-fit: contain;
         position: absolute;
         opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+        transition: opacity 0.4s ease-in-out;
     }
 
     .carousel img.active {
@@ -53,39 +53,38 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(0,0,0,0.4);
-        color: #fff;
-        border: none;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
         font-size: 22px;
-        padding: 8px 12px;
-        cursor: pointer;
+        border: none;
+        padding: 10px;
         border-radius: 50%;
-        z-index: 2;
+        cursor: pointer;
+        z-index: 5;
     }
 
     .carousel-arrow.left {
-        left: 10px;
+        left: 15px;
     }
 
     .carousel-arrow.right {
-        right: 10px;
+        right: 15px;
     }
 
     .dots {
         display: flex;
         justify-content: center;
-        margin-top: 12px;
+        margin-top: 10px;
     }
 
     .dot {
-        height: 10px;
         width: 10px;
-        margin: 0 5px;
-        background-color: #bbb;
+        height: 10px;
+        background-color: #ccc;
         border-radius: 50%;
-        display: inline-block;
+        margin: 0 4px;
+        transition: background-color 0.3s;
         cursor: pointer;
-        transition: background-color 0.3s ease;
     }
 
     .dot.active {
@@ -97,19 +96,20 @@
     }
 
     .product-details h3 {
-        margin-bottom: 12px;
-        font-size: 22px;
-        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #222;
     }
 
     .product-details p {
-        margin: 6px 0;
         font-size: 15px;
+        margin: 4px 0;
         color: #555;
     }
 
     .product-details p strong {
-        color: #333;
+        color: #222;
+        font-weight: 600;
     }
 
     .low-stock {
@@ -117,6 +117,7 @@
         font-weight: bold;
         margin-top: 12px;
     }
+    
     .header {
         background-color: #00bcd4;
         padding: 15px 30px;
@@ -137,14 +138,17 @@
         text-decoration: underline;
     }
     
+
 </style>
 </head>
 <body>
+
 <%
     Item item = (Item) request.getAttribute("item");
     String itemName = item.getItemName();
     List<ItemURL> itemImages = item.getItemUrlList();
 %>
+
 <%! 
     public static String formatPrice(double price){
         String temp = String.valueOf(price);
@@ -153,7 +157,9 @@
         return temp;
     }
 %>
+
 <jsp:include page="Header.jsp" />
+
 <div class="product-container">
     <!-- Carousel -->
     <div class="carousel" id="carousel">
@@ -163,7 +169,6 @@
         %>
             <img src="<%= url.getUrl() %>" alt="Image <%= index+1 %>" class="<%= (index == 0) ? "active" : "" %>"/>
         <% index++; } %>
-
         <button class="carousel-arrow left" onclick="prevSlide()">&#60;</button>
         <button class="carousel-arrow right" onclick="nextSlide()">&#62;</button>
     </div>
@@ -206,7 +211,7 @@
         showSlide(currentIndex);
     }
 
-    // Initialize dots
+    // Init Dots
     images.forEach((img, i) => {
         const dot = document.createElement("span");
         dot.classList.add("dot");
