@@ -111,3 +111,15 @@
     	color:black;
     	
     }
+    
+    .cart-buttons{
+    	width: 100%;
+        margin-top: 25px;
+        padding: 9px;
+        background-color: #00bcd4;
+        border: none;
+        color: white;
+        font-size: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+    }

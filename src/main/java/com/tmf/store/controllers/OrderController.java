@@ -1,6 +1,7 @@
 package com.tmf.store.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tmf.store.entites.Address;
 import com.tmf.store.entites.User;
 import com.tmf.store.services.OrderService;
+import com.tmf.store.services.UserService;
 import com.tmf.store.utils.CartItem;
 import com.tmf.store.utils.UserOrderItem;
 
@@ -30,6 +33,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping
 	public String getAllOrders(HttpSession session,Model m) {
@@ -65,6 +71,17 @@ public class OrderController {
 		String statusResponse = orderService.updateItemStatus(id, status);
 		if(statusResponse.equals("success")) return ResponseEntity.ok("Item Status Updated");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(statusResponse);
+	}
+	
+	@GetMapping("/address")
+	public String showAddressListOfUser(HttpSession session,Model m) {
+		User user = (User) session.getAttribute("user");
+		Optional<User> checkUser = Optional.ofNullable(user);
+		if(checkUser.isEmpty()) return "redirect:/login";
+		
+		List<Address> addressList = userService.getAddressListByUser(user);
+		m.addAttribute("addresses",addressList);
+		return "CartAddress";
 	}
 	
 	@PostMapping

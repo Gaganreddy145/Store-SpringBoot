@@ -66,21 +66,21 @@
 	        	List<Item> items = (List<Item>) request.getAttribute("items");
 	        	
 	        	for(Item item:items){%>
-	        		<a href="/items/<%= item.getItemId()%>" class="link-card">
 	        		 <div class="item-card">
 	        		 <%
 	        		 	String imageUrl = item.getItemUrlList().size() == 0 ? "/images/apple.jpg" : item.getItemUrlList().get(0).getUrl();
 	        		 %>
-			            <img src="<%= imageUrl %>" alt="<%= item.getItemName() %> image"/>
+			           <a href="/items/<%= item.getItemId()%>" class="link-card"> 
+	           				<img src="<%= imageUrl %>" alt="<%= item.getItemName() %> image"/>
+	           			</a>
 			            <p><%= item.getItemName() %></p>
 			            <p>Price: <%= item.getPrice() %></p>
 			            <%	long id = item.getItemId();
 			            	//Gson gson = new Gson();
 			            	//String jsonItem = gson.toJson(item);
 			            %>
-			            <button onclick="addToCart(<%= id%>)">Add to Cart</button>
-			        </div>
-			        </a>
+			            <button class="cart-buttons" onclick="addToCart(<%= id%>)">Add to Cart</button>
+			        </div>   
 	        	<% }
 	        %>
 	    </div>
