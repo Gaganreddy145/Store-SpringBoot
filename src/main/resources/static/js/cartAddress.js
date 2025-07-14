@@ -47,7 +47,7 @@ let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
 		}
 	} catch (error) {
 		button.innerText = "Buy";
-		button.setAttribute("disabled","false");
+		button.removeAttribute("disabled");
 		alert("An error occured");
 		console.log(error);
 	}	 

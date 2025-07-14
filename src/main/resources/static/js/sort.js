@@ -39,8 +39,11 @@ const sortByPrice = (orderFn) => {
 	data.sort(orderFn);
 	childrens.map((card, index) => {
 		const srcUrl = data[index].itemUrlList.length == 0 ? "/images/apple.jpg": data[index].itemUrlList[0].url;
-		card.children[0].src = srcUrl;
-		card.children[0].alt = `${data[index].itemName} image`;
+		//card.children[0].src = srcUrl;
+		//card.children[0].alt = `${data[index].itemName} image`;
+		card.children[0].href = `/items/${data[index].itemId}`;
+		card.children[0].children[0].src = srcUrl;
+		card.children[0].children[0].alt = `${data[index].itemName} image`;
 		card.children[1].innerHTML = data[index].itemName;
 		const price = formatPrice(data[index].price);
 		card.children[2].innerHTML = `Price: ${price}`;
@@ -54,18 +57,23 @@ const constructCard = (itemObj, cardContainer) => {
 	const p1 = document.createElement("p");
 	const p2 = document.createElement("p");
 	const button = document.createElement("button");
+	const anchor = document.createElement("a");
 	
 	const imageUrl = itemObj.itemUrlList.length == 0 ? "/images/apple.jpg": itemObj.itemUrlList[0].url;
 	img.setAttribute("src", imageUrl);
 	img.setAttribute("alt", "apple image");
 	div.setAttribute("class", "item-card");
+	anchor.setAttribute("href",`/items/${itemObj.itemId}`);
+	anchor.setAttribute("class","link-card");
 	button.setAttribute("onclick",`addToCart(${itemObj.itemId})`);
-	
+	button.setAttribute("class","cart-buttons");
+		
 	p1.innerText = itemObj.itemName;
 	const price = formatPrice(itemObj.price);
 	p2.innerText = `Price: ${price}`;
 	button.innerText = "Add to Cart";
-	div.append(img);
+	anchor.append(img);
+	div.append(anchor);
 	div.append(p1);
 	div.append(p2);
 	div.append(button);
