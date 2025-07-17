@@ -28,7 +28,7 @@ public class Order {
 //	@ColumnDefault("'ordered'")
 //	private String status;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="address_id", referencedColumnName = "address_id")
 	private Address address;
 

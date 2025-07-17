@@ -49,7 +49,7 @@ public class LoginController {
 		//System.out.println("email" + email);
 		
 		User user = userService.authUser(email, password);
-		if(user == null) {
+		if(user == null || user.getRole().equals("admin")) {
 			m.addAttribute("error","Incorrect email or password");
 			return "login";
 		}

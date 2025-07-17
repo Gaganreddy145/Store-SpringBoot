@@ -17,6 +17,7 @@
         <%
             List<Item> items = (List<Item>) request.getAttribute("items");
             for(Item item : items) {
+            	String imageUrl = item.getItemUrlList().get(0).getUrl() != null ? item.getItemUrlList().get(0).getUrl() : "/images/apple.jpg";
         %>
             <div class="item-card">
                 <!-- Top-right checkbox -->
@@ -26,7 +27,7 @@
                 <input type="checkbox" onchange="updateAvailable(<%= item.getItemId() %>)" class="item-checkbox" name="selectedItems" value="<%= item.getItemId() %>"/>
                <%}%>
 
-                <img src="/images/apple.jpg" alt="Item image"/>
+                <img src="<%= imageUrl%>" alt="<%= item.getItemName() %> image"/>
                 <p><%= item.getItemName() %></p>
                 <p>Price: <%= item.getPrice() %></p>
                 <p>Available Quantity: <%= item.getAvailableQuantity() %></p>
