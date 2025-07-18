@@ -38,6 +38,25 @@ public class ProfileController {
 		return "redirect:/login";
 	}
 	
+	@GetMapping("/admin")
+	public String getAdminProfileDetails(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
+		return "AdminProfile";
+	}
+	
+	@PostMapping("/admin")
+	public String updateAdminProfileDetails(@RequestParam("phno") String phno
+											,@RequestParam("email") String email
+											,@RequestParam("lastname") String lastName
+											,@RequestParam("firstname") String firstName,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user == null) return "redirect:/login";
+		userService.updateUser(firstName,lastName,email,phno,user);
+		
+		return "redirect:/profile/admin";		
+	}
+	
 	@PostMapping
 	public String updateProfileDetails(@RequestParam("phno") String phno
 										,@RequestParam("email") String email

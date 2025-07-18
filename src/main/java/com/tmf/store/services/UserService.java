@@ -57,6 +57,16 @@ public class UserService {
 		userRepo.save(user);
 	}
 	
+	@Transactional
+	public void updateUser(String firstName,String lastName,String email,String phno,User user) {
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPhno(phno);
+		
+		userRepo.save(user);
+	}
+	
 	public void addUser(String firstName,String lastName,String email,String phno,String password,String doorNo,String area,String city,String state,Long pinCode) {
 		User newUser = new User(firstName, lastName, phno, email, password);
 		Address newAddress = new Address(doorNo, area, city, state, pinCode, newUser);
